@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 import TodoTask from '../components/TodoTask';
 
@@ -33,7 +34,8 @@ const ModalContainer = ({ openModal, clickedMenu, handleModalClose }) => {
                             }
                         })()
                     }
-                    <button onClick={handleModalClose}>Close</button>
+                    <Button onClick={handleModalClose} variant="contained" color="primary">Save</Button>
+                    <Button onClick={handleModalClose}>Cancel</Button>
                 </div>
                 {/*
                 <div className='modal'>

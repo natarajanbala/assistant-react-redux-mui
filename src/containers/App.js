@@ -2,11 +2,14 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import AppTitleBar from '../components/AppTitleBar';
 import ModalContainer from './ModalContainer';
 import { openModal, closeModal, openCreateMenu, closeCreateMenu} from '../actions';
 import { connect } from 'react-redux';
+
 
 const mapStateToProps = (state) => ({
   targetMenu: state.addMain.menuTarget
@@ -31,6 +34,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 function App({ targetMenu, onMenuClick,  onMenuClose, onModalOpen, onModalClose}) {
+  console.log('targetMenu  -- ', targetMenu);
   return (
     <>
       <AppTitleBar />
@@ -41,8 +45,9 @@ function App({ targetMenu, onMenuClick,  onMenuClose, onModalOpen, onModalClose}
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={onMenuClick}
+        variant="outlined"
       >
-        Create
+        Create {(targetMenu !== undefined && Boolean(targetMenu)) ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       </Button>
       <Menu
         id="simple-menu"
@@ -50,6 +55,9 @@ function App({ targetMenu, onMenuClick,  onMenuClose, onModalOpen, onModalClose}
         keepMounted
         open={Boolean(targetMenu)}
         onClose={onMenuClose}
+        getContentAnchorEl={null}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        transformOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <MenuItem
           onClick={() => onModalOpen('TODO_MENU')}

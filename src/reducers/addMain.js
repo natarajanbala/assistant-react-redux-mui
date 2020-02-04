@@ -25,7 +25,8 @@ const addMain = (state = { openModal: false }, action) => {
         case 'CLOSE_MENU': {
             return {
                 ...state,
-                openMenu: false
+                openMenu: false,
+                menuTarget: action.target
             }
         }
         default:
